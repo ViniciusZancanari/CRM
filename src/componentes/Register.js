@@ -76,13 +76,35 @@ return(
     placeholder='R$'/>
 
     <label>Status</label>
-    <input type='radio' value='A' name='status'/>A
-    <input type='radio' value='B' name='status'/>B
-    <input type='radio' value='C' name='status'/>C
+    <input 
+    type='radio' 
+    value='A' 
+    {...register("status")}
+    />A
+
+    <input 
+    type='radio'
+    value='B'
+    {...register("status")}
+    />B
+    <input
+    type='radio'
+    value='C'
+    {...register("status")}
+    />C
 
     <label>Parcela Guarda-Chuva:</label>
-    <input type='radio' value='sim' name='umbrella'/>Sim
-    <input type='radio' value='nao' name='umbrella'/>Não
+    <input
+    type='radio'
+    value='sim'
+    {...register("umbrella")}
+    />Sim
+    
+    <input
+    type='radio'
+    value='nao'
+    {...register("umbrella")}
+    />Não
     
     <button type="submit">OK</button>
 
