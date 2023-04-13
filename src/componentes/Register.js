@@ -16,12 +16,19 @@ const [umbrella, setUmbrella] = React.useState('');
 
 const {register, handleSubmit} = useForm();
 
+var listaJson= []
+
 const onSubmit = (e) =>{
-   console.log(e);
+
+    var jsonn = JSON.stringify(e);
+    console.log(jsonn)
+    listaJson.push(e);
+    console.log(listaJson);
+
 }
  
 return(
-
+    
 <form onSubmit={handleSubmit(onSubmit)}>
         
     <div> 
@@ -80,17 +87,21 @@ return(
     type='radio' 
     value='A' 
     {...register("status")}
+    onChange={(e) => setStatus(e.target.value)}
     />A
 
     <input 
     type='radio'
     value='B'
     {...register("status")}
+    onChange={(e) => setStatus(e.target.value)}
     />B
+
     <input
     type='radio'
     value='C'
     {...register("status")}
+    onChange={(e) => setStatus(e.target.value)}
     />C
 
     <label>Parcela Guarda-Chuva:</label>
@@ -98,12 +109,14 @@ return(
     type='radio'
     value='sim'
     {...register("umbrella")}
+    onChange={(e) => setUmbrella(e.target.value)}
     />Sim
     
     <input
     type='radio'
     value='nao'
     {...register("umbrella")}
+    onChange={(e) => setUmbrella(e.target.value)}
     />Não
     
     <button type="submit">OK</button>
