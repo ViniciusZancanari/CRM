@@ -4,10 +4,14 @@ import { useForm } from "react-hook-form";
 function Register ()
 {
 
+const [cnpj, setCNPJ] = React.useState('');
+const [size, setSize] = React.useState('');
+const [corporateName, setCorporateName] = React.useState('');
+const [location, setLocation] = React.useState('');
 const [name, setName] = React.useState('');
 const [phone, setPhone] = React.useState('');
 const [email, setEmail] = React.useState('');
-const [projectNumber, setProjectNumber] = React.useState('');
+const [SGSETNumber, setSGSETNumber] = React.useState('');
 const [responsible, setResponsible] = React.useState('');
 const [area, setArea] = React.useState('');
 const [price,setPrice] = React.useState('');
@@ -16,14 +20,14 @@ const [umbrella, setUmbrella] = React.useState('');
 
 const {register, handleSubmit} = useForm();
 
-var listaJson= []
+var listProposals= []
 
 const onSubmit = (e) =>{
 
-    var jsonn = JSON.stringify(e);
-    console.log(jsonn)
-    listaJson.push(e);
-    console.log(listaJson);
+    var proposal = JSON.stringify(e);
+    console.log(proposal)
+    listProposals.push(e);
+    console.log(listProposals);
 
 }
  
@@ -32,7 +36,41 @@ return(
 <form onSubmit={handleSubmit(onSubmit)}>
         
     <div> 
-    <h1>Contato da Proposta</h1> 
+    <h1>Cadastrar Novo Atendimento</h1>
+    <label>CNPJ</label>
+    <input
+    type="number"
+    {...register('cnpj')}
+    onChange={(e) => setCNPJ(e.target.value)}
+    />
+
+    <label>Razão Social</label>
+    <input
+    type="text"
+    {...register('corporateName')}
+    onChange={(e) => setCorporateName(e.target.value)}
+    placeholder='Gerado por API'
+    />
+
+    <label>Porte</label>
+    <placeholder>API</placeholder>
+    <input
+    type="text"
+    {...register('size')}
+    onChange={(e) => setSize(e.target.value)}
+    placeholder='Gerado por API'
+    />  
+
+    <label>Localização</label>
+    <placeholder>API</placeholder>
+    <input
+    type="text"
+    {...register('location')}
+    onChange={(e) => setLocation(e.target.value)}
+    placeholder='Gerado por API'
+    />  
+
+    <h2>Contato da Proposta</h2> 
     <label>Nome</label>
     <input 
     type='text' 
@@ -56,11 +94,11 @@ return(
     </div>
    
     <div>
-    <h2>Dados da Proposta</h2> 
+    <h3>Dados da Proposta</h3> 
     <label>Número da Proposta SGSET</label>
     <input 
-    {...register("projectNumber")}
-    onChange={(e) => setProjectNumber(e.target.value)}    
+    {...register("SGSETNumber")}
+    onChange={(e) => setSGSETNumber(e.target.value)}    
     placeholder='Número da Proposta SGSET'
     />
 
@@ -68,13 +106,30 @@ return(
     <input 
     {...register("responsible")}
     onChange={(e) => setResponsible(e.target.value)}
-    placeholder='Responsável Técnico'></input>
+    placeholder='Responsável Técnico'
+    />
 
     <label>Área</label>
-    <input type='radio' value='Area1' name='area'/>Area1
-    <input type='radio' value='Area2' name='area'/>Area2
-    <input type='radio' value='Area3' name='area'/>Area3
+    <input 
+    type='radio'
+    value='Area1'
+    {...register("area")}
+    onChange={(e) => setArea(e.target.value)}
+    />Area1
 
+    <input
+    type='radio' 
+    value='Area2'
+    {...register("area")}
+    onChange={(e) => setArea(e.target.value)}
+    />Area2
+
+    <input 
+    type='radio' 
+    value='Area3'
+    {...register("area")}
+    onChange={(e) => setArea(e.target.value)}
+    />Area3
 
     <label>Valor</label>
     <input
@@ -124,9 +179,6 @@ return(
     </div>
 </form>
 )
-
-
-
 }
 
 export default Register;
