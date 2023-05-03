@@ -1,33 +1,51 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function consultProposal(consultCNPJ, consultSGSETNumber) {
-    if (consultCNPJ || consultSGSETNumber != 0) {
-        return (
-            console.log('deu certo')
-            //listProposals.includes()
-        )
-    }
-}
+var json = `{
+    "cnpj":"00.352.836/0001",
+    "size":"Médio",
+    "corporateName":"SENAI MARIO AMATO",
+    "location":"Avenida José Odorizzi",
+    "propostal":
+    [
+        {
+        "name":"José",
+        "phone":"12456789",
+        "email":"senai@spsenai.br",
+        "SGSETNumber":"404/2023",
+        "responsible":"Henrique",
+        "area":"Area1",
+        "price":"1000,00",
+        "status":"A",
+        "umbrella":"sim"
+        }
+    ]
+}`
+
+var propostalProject = JSON.parse(json);
+
 
 function Consult() {
 
     const [consultCNPJ, setConsultCNPJ] = React.useState('');
     const [consultSGSETNumber, setConsultSGSETNumber] = React.useState('');
 
-    const {register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
 
-    /*
-    function consultProposal() {
-        if (consultCNPJ = ! null) {
 
+    const onSubmit = (e) =>  {
+        if (consultCNPJ || consultSGSETNumber != 0) {
+            return (
+                console.log(propostalProject)
+                //listProposals.includes()
+            )
         }
     }
-    */
+
 
 
     return (
-        <form onSubmit={handleSubmit(consultProposal)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
             <label>CNPJ</label>
             <input
@@ -46,12 +64,10 @@ function Consult() {
 
             <button
                 type='submit'
-                onClick={consultProposal(consultCNPJ, consultSGSETNumber)}
-
             >
                 Pesquisar
             </button>
-        </form> 
+        </form>
     )
 
 }
