@@ -1,73 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
-var json = `{
-    "cnpj":"00.352.836/0001",
-    "size":"Médio",
-    "corporateName":"SENAI MARIO AMATO",
-    "location":"Avenida José Odorizzi",
-    "propostal":
-    [
-        {
-        "name":"José",
-        "phone":"12456789",
-        "email":"senai@spsenai.br",
-        "SGSETNumber":"404/2023",
-        "responsible":"Henrique",
-        "area":"Area1",
-        "price":"1000,00",
-        "status":"A",
-        "umbrella":"sim"
-        }
-    ]
-}`
-
-var propostalProject = JSON.parse(json);
-
+import listProposals from '../data.json';
+import Proposal from "./Proposal";
 
 function Consult() {
 
-    const [consultCNPJ, setConsultCNPJ] = React.useState('');
-    const [consultSGSETNumber, setConsultSGSETNumber] = React.useState('');
-
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
+    const [filteredProposals, setFilteredProposals] = useState(null);
 
 
-    const onSubmit = (e) =>  {
+    const onSubmit = (values) => {
+
+        const { consultCNPJ, consultSGSETNumber } = values;
+
         if (consultCNPJ || consultSGSETNumber != 0) {
-            return (
-                console.log(propostalProject)
-                //listProposals.includes()
-            )
+            const company = listProposals.find((proposal) => proposal.cnpj === consultCNPJ || proposal.sgsetNumber === consultSGSETNumber)
+            setFilteredProposals(company.propostal)
+            console.log(company)
         }
     }
 
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
 
-            <label>CNPJ</label>
-            <input
-                type="number"
-                {...register('consultCNPJ')}
-                onChange={(e) => setConsultCNPJ(e.target.value)}
-            />
+                <label>CNPJ</label>
+                <input
+                    type="text"
+                    {...register('consultCNPJ')}
+                    onChange={(e) => setValue("consultCNPJ", e.target.value)}
+                />
 
-            <label>Número da Proposta do SGSET</label>
+                <label>Número da Proposta do SGSET</label>
 
-            <input
-                type="number"
-                {...register('consultSGSETNumber')}
-                onChange={(e) => setConsultSGSETNumber(e.target.value)}
-            />
+                <input
+                    type="text"
+                    {...register('consultSGSETNumber')}
+                    onChange={(e) => setValue("consultSGSETNumber", e.target.value)}
+                />
 
-            <button
-                type='submit'
-            >
-                Pesquisar
-            </button>
-        </form>
+                <button
+                    type='submit'
+                >
+                    Pesquisar
+                </button>
+            </form>
+            {
+                filteredProposals && filteredProposals.length > 0 &&
+                <Proposal propostas={filteredProposals} />
+            }
+
+        </div>
     )
 
 }

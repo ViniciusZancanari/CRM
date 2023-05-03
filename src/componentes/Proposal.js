@@ -1,14 +1,15 @@
-function Proposal() {
+function Proposal({propostas}) {
+
+    console.log(propostas)
     return (
-        <table>
-            <thead>Propostas</thead>
-            <tr>
-            <td>1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-            </tr>
-        </table>
+        <ul>
+        {propostas.map((proposta, index) => (
+          <li key={index}>
+            <p>Nº SGSET: {proposta.SGSETNumber}</p>
+            <p>Status: {proposta.status}</p>
+          </li>
+        ))}
+      </ul>
     )
 }
 
