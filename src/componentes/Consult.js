@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import listProposals from '../data.json';
-import Proposal from "./Proposal";
+import TableProposal from "./TableProposal";
 
 function Consult() {
 
@@ -49,7 +49,7 @@ function Consult() {
             </form>
             {
                 filteredProposals && filteredProposals.length > 0 &&
-                <Proposal propostas={filteredProposals} />
+                <TableProposal propostas={filteredProposals} />
             }
 
         </div>
