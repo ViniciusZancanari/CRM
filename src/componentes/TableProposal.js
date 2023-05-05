@@ -1,16 +1,20 @@
-function Proposal({propostas}) {
+function TableProposal({propostas}) {
 
     console.log(propostas)
     return (
-        <ul>
+        <table>
         {propostas.map((proposta, index) => (
-          <li key={index}>
+         <button>
+          <tr key={index}>
+
             <p>Nº SGSET: {proposta.SGSETNumber}</p>
             <p>Status: {proposta.status}</p>
-          </li>
+          </tr>
+          
+          </button > 
         ))}
-      </ul>
+      </table>
     )
 }
 
-export default Proposal;
+export default TableProposal;
