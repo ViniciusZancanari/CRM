@@ -1,7 +1,6 @@
 import './App.css';
 import Consult from './componentes/Consult';
-import Menu from './componentes/Menu';
-import Proposal from './componentes/Proposal';
+import Proposal from './componentes/TableProposal';
 import Register from './componentes/Register';
 
 function App() {

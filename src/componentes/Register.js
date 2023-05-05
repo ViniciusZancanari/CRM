@@ -3,21 +3,7 @@ import { useForm } from "react-hook-form";
 
 function Register() {
 
-    const [cnpj, setCNPJ] = React.useState('');
-    const [size, setSize] = React.useState('');
-    const [corporateName, setCorporateName] = React.useState('');
-    const [location, setLocation] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [phone, setPhone] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [SGSETNumber, setSGSETNumber] = React.useState('');
-    const [responsible, setResponsible] = React.useState('');
-    const [area, setArea] = React.useState('');
-    const [price, setPrice] = React.useState('');
-    const [status, setStatus] = React.useState('');
-    const [umbrella, setUmbrella] = React.useState('');
-
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,setValue } = useForm();
 
     var listProposals = []
 
@@ -40,14 +26,14 @@ function Register() {
                 <input
                     type="number"
                     {...register('cnpj')}
-                    onChange={(e) => setCNPJ(e.target.value)}
+                    onChange={(e) => setValue('cnpj',e.target.value)}
                 />
 
                 <label>Razão Social</label>
                 <input
                     type="text"
                     {...register('corporateName')}
-                    onChange={(e) => setCorporateName(e.target.value)}
+                    onChange={(e) => setValue('corporateName',e.target.value)}
                     placeholder='Gerado por API'
                 />
 
@@ -56,7 +42,7 @@ function Register() {
                 <input
                     type="text"
                     {...register('size')}
-                    onChange={(e) => setSize(e.target.value)}
+                    onChange={(e) => setValue('size',e.target.value)}
                     placeholder='Gerado por API'
                 />
 
@@ -65,7 +51,7 @@ function Register() {
                 <input
                     type="text"
                     {...register('location')}
-                    onChange={(e) => setLocation(e.target.value)}
+                    onChange={(e) => setValue('location',e.target.value)}
                     placeholder='Gerado por API'
                 />
 
@@ -74,21 +60,21 @@ function Register() {
                 <input
                     type='text'
                     {...register('name')}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setValue('name', e.target.value)}
                     autoFocus></input>
 
                 <label>Telefone</label>
                 <input
                     type='tel'
                     {...register("phone")}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setValue("phone",e.target.value)}
                 ></input>
 
                 <label>E-mail</label>
                 <input
                     type='email'
                     {...register("email")}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setValue("email",e.target.value)}
                 ></input>
             </div>
 
@@ -97,14 +83,14 @@ function Register() {
                 <label>Número da Proposta SGSET</label>
                 <input
                     {...register("SGSETNumber")}
-                    onChange={(e) => setSGSETNumber(e.target.value)}
+                    onChange={(e) => setValue("SGSETNumber",e.target.value)}
                     placeholder='Número da Proposta SGSET'
                 />
 
                 <label>Responsável Técnico</label>
                 <input
                     {...register("responsible")}
-                    onChange={(e) => setResponsible(e.target.value)}
+                    onChange={(e) => setValue("responsible",e.target.value)}
                     placeholder='Responsável Técnico'
                 />
 
@@ -113,27 +99,27 @@ function Register() {
                     type='radio'
                     value='Area1'
                     {...register("area")}
-                    onChange={(e) => setArea(e.target.value)}
+                    onChange={(e) => setValue("area",e.target.value)}
                 />Area1
 
                 <input
                     type='radio'
                     value='Area2'
                     {...register("area")}
-                    onChange={(e) => setArea(e.target.value)}
+                    onChange={(e) => setValue("area",e.target.value)}
                 />Area2
 
                 <input
                     type='radio'
                     value='Area3'
                     {...register("area")}
-                    onChange={(e) => setArea(e.target.value)}
+                    onChange={(e) => setValue("area",e.target.value)}
                 />Area3
 
                 <label>Valor</label>
                 <input
                     {...register("price")}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => setValue("price",e.target.value)}
                     placeholder='R$' />
 
                 <label>Status</label>
@@ -141,21 +127,21 @@ function Register() {
                     type='radio'
                     value='A'
                     {...register("status")}
-                    onChange={(e) => setStatus(e.target.value)}
+                    onChange={(e) => setValue("status",e.target.value)}
                 />A
 
                 <input
                     type='radio'
                     value='B'
                     {...register("status")}
-                    onChange={(e) => setStatus(e.target.value)}
+                    onChange={(e) => setValue("status",e.target.value)}
                 />B
 
                 <input
                     type='radio'
                     value='C'
                     {...register("status")}
-                    onChange={(e) => setStatus(e.target.value)}
+                    onChange={(e) => setValue("status",e.target.value)}
                 />C
 
                 <label>Parcela Guarda-Chuva:</label>
@@ -163,14 +149,14 @@ function Register() {
                     type='radio'
                     value='sim'
                     {...register("umbrella")}
-                    onChange={(e) => setUmbrella(e.target.value)}
+                    onChange={(e) => setValue("umbrella",e.target.value)}
                 />Sim
 
                 <input
                     type='radio'
                     value='nao'
                     {...register("umbrella")}
-                    onChange={(e) => setUmbrella(e.target.value)}
+                    onChange={(e) => setValue("umbrella",e.target.value)}
                 />Não
 
                 <button type="submit">OK</button>
