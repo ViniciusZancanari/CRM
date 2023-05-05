@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 function TableProposal({propostas}) {
+  //<Link to="/register">{proposta.companyName}</Link>
 
     console.log(propostas)
     return (
@@ -6,7 +9,6 @@ function TableProposal({propostas}) {
         {propostas.map((proposta, index) => (
          <button>
           <tr key={index}>
-
             <p>Nº SGSET: {proposta.SGSETNumber}</p>
             <p>Status: {proposta.status}</p>
           </tr>
