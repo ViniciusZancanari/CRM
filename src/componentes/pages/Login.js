@@ -2,12 +2,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 function Login() {
-
-
-    const redirectToConsultPage = () => {
-
-        <Link to="/consult">Entrar</Link>
-    };
     return (
         <div>
             <label>E-mail</label>
@@ -19,8 +13,9 @@ function Login() {
             <input
                 type="text"
             />
-            <button onClick={redirectToConsultPage()}>
-                
+           
+            <button>
+                <Link to="/consult">Entrar</Link>                
             </button>
 
         </div>
