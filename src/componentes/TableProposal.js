@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 function TableProposal({ propostas }) {
   const [ultimoClicado, setUltimoClicado] = useState(null);
 
-  function handleClick(event) {
-    setUltimoClicado(event.target);
-    console.log(event.target)
+  function handleClick(proposta) {
+   setUltimoClicado(proposta.SGSETNumber);
+    console.log(proposta.SGSETNumber)
   }
 
 
@@ -16,13 +16,13 @@ function TableProposal({ propostas }) {
   return (
     <table>
       {propostas.map((proposta, index) => (
-        <button onClick={handleClick}>
+        <button onClick={() => handleClick(proposta)}>
           <tr key={index}>
             <p>Nº SGSET: {proposta.SGSETNumber}</p>
             <p>Status: {proposta.status}</p>
             <Link to="/edit">Editar </Link>
           </tr>
-        </button >
+        </button>
       ))}
     </table>
   )
