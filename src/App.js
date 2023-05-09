@@ -3,6 +3,8 @@ import Consult from './componentes/pages/Consult';
 import Register from './componentes/pages/Register';
 import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
 import Login from './componentes/pages/Login';
+import Edit from './componentes/pages/Edit';
+import Rotas from './componentes/Rotas.js';
 
 function App() {
 /*
@@ -14,16 +16,15 @@ function Layout() {
     <compente1/>
     <compente2/>
   )
+
+
+  <Rotas>
 */
   return (
     <div className="App">
-      <BrowserRouter>
-          <Routes>
-            <Route exact path='/' element={<Login />} />
-            <Route path="/consult" element={<Consult />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-      </BrowserRouter>
+      <Rotas/>
+      
+      
     </div>
   );
 }
