@@ -1,15 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import filteredProposals from './Consult.js';
-import data from '../../data.json';
+import proposta from "../TableProposal";
+
+const p = {proposta}
 
 function Edit() {
-
-    console.log(filteredProposals)
+    
+    console.log('edit'+p)
     const inicial = {
         //cnpj:data[0].cnpj,
         //cnpj:data[0].propostal[1].SGSETNumber,
-        cnpj: data[0].propostal[1].SGSETNumber,
+        cnpj: p,
         corporateName: '',
         size: '',
     }
