@@ -1,26 +1,17 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
+function TableProposal({ proposals }) {
+  
 
-
-function TableProposal({ propostas }) {
-  const [ultimoClicado, setUltimoClicado] = useState(null);
-
-  function handleClick(proposta) {
-   setUltimoClicado(proposta.SGSETNumber);
-    console.log(proposta.SGSETNumber)
-  }
-
-
-  //console.log(propostas)
   return (
     <table>
-      {propostas.map((proposta, index) => (
-        <button onClick={() => handleClick(proposta)}>
+      {proposals.map((proposal, index) => (
+        <button >
           <tr key={index}>
-            <p>Nº SGSET: {proposta.SGSETNumber}</p>
-            <p>Status: {proposta.status}</p>
-            <Link to="/edit">Editar </Link>
+            <p>CNPJ: {proposal.cnpj}</p>
+            <p>Nº SGSET: {proposal.SGSETNumber}</p>
+            <p>Status: {proposal.status}</p>
+            <Link to={`/edit/${proposal.SGSETNumber}`}>Editar </Link>
           </tr>
         </button>
       ))}
