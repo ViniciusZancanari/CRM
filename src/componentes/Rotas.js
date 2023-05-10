@@ -12,6 +12,7 @@ function Rotas() {
                 <Route path="/consult" element={<Consult />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/edit" element={<Edit />} />
+                <Route path="/edit/:SGSETNumber" element={<Edit />} />
             </Routes>
         </BrowserRouter>
     )
