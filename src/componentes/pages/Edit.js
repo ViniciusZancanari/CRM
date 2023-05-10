@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import proposta from "../TableProposal";
+import { useParams } from "react-router";
+import listProposals from '../../data.json';
+import Consult from "./Consult";
+import Register from "./Register";
 
-const p = {proposta}
 
 function Edit() {
-    
-    console.log('edit'+p)
+    const { SGSETNumber } = useParams();
+    console.log(SGSETNumber)
+    const [filteredProposals, setFilteredProposals] = useState(null);
+    //find proposal by SGSETNumber
+    const company = listProposals.find((proposal) => proposal.SGSETNumber === SGSETNumber)
+    setFilteredProposals(company.propostal);
+
     const inicial = {
         //cnpj:data[0].cnpj,
         //cnpj:data[0].propostal[1].SGSETNumber,
-        cnpj: p,
-        corporateName: '',
+            //find proposal by SGSETNumber
+        cnpj: '',
+        corporateName: [SGSETNumber],
         size: '',
     }
     const { register, handleSubmit, setValue } = useForm(
@@ -49,16 +57,13 @@ function Edit() {
 */
 
     return (
-
         <form onSubmit={handleSubmit(onSubmit)}>
 
             <div>
-
-
-                <h1>Empresa</h1>
+                <h1>Cadastrar Novo Atendimento</h1>
                 <label>CNPJ</label>
                 <input
-                    type="text"
+                    type="number"
                     {...register('cnpj')}
                     onChange={(e) => setValue('cnpj', e.target.value)}
                 />

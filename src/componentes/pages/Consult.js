@@ -50,7 +50,7 @@ function Consult() {
             </form>
             {
                 filteredProposals && filteredProposals.length > 0 &&
-                <TableProposal propostas={filteredProposals} />
+                <TableProposal proposals={filteredProposals} />
             }
 
         </div>
