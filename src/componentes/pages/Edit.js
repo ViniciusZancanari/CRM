@@ -2,29 +2,106 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import listProposals from '../../data.json';
-import Consult from "./Consult";
-import Register from "./Register";
+import { Link } from "react-router-dom";
+
+
 
 
 function Edit() {
+
     const { SGSETNumber } = useParams();
-    console.log(SGSETNumber)
-    const [filteredProposals, setFilteredProposals] = useState(null);
-    //find proposal by SGSETNumber
-    const company = listProposals.find((proposal) => proposal.SGSETNumber === SGSETNumber)
-    setFilteredProposals(company.propostal);
+    console.log({ SGSETNumber })
+
+    const data = [
+        {
+            "cnpj": "00.352.836/0001",
+            "size": "Médio",
+            "corporateName": "SENAI MARIO AMATO",
+            "location": "Avenida José Odorizzi",
+            "propostal": [
+                {
+                    "name": "José",
+                    "phone": "12456789",
+                    "email": "senai@spsenai.br",
+                    "SGSETNumber": "4042023",
+                    "responsible": "Henrique",
+                    "area": "Area1",
+                    "price": "1000,00",
+                    "status": "A",
+                    "umbrella": "sim"
+                },
+                {
+                    "name": "José",
+                    "phone": "12456789",
+                    "email": "senai@spsenai.br",
+                    "SGSETNumber": "4052023",
+                    "responsible": "Henrique",
+                    "area": "Area1",
+                    "price": "1000,00",
+                    "status": "A",
+                    "umbrella": "sim"
+                }
+            ]
+        },
+        {
+            "cnpj": "00.352.836/0002",
+            "size": "Médio",
+            "corporateName": "SENAI MARIO AMATO",
+            "location": "Avenida José Odorizzi",
+            "propostal": [
+                {
+                    "name": "José",
+                    "phone": "12456789",
+                    "email": "senai@spsenai.br",
+                    "SGSETNumber": "4012023",
+                    "responsible": "Henrique",
+                    "area": "Area1",
+                    "price": "1000,00",
+                    "status": "A",
+                    "umbrella": "sim"
+                },
+                {
+                    "name": "José",
+                    "phone": "12456789",
+                    "email": "senai@spsenai.br",
+                    "SGSETNumber": "4022023",
+                    "responsible": "Henrique",
+                    "area": "Area1",
+                    "price": "1000,00",
+                    "status": "A",
+                    "umbrella": "sim"
+                }
+            ]
+        },
+        
+    ]
+    let desiredCompany = null
+    let desiredProposal = null
+    for (const company of data) {
+        let hasFoundProposal = false
+        for (const currentProposal of company.propostal) {
+            const hasProposal = currentProposal.SGSETNumber === SGSETNumber;
+            if(!hasProposal) continue;
+            desiredProposal = currentProposal;
+            hasFoundProposal = true;
+            break;
+        }
+        if(!hasFoundProposal) continue;
+        desiredCompany = company;
+        break;
+    }
+    
+    console.log(desiredCompany);
 
     const inicial = {
-        //cnpj:data[0].cnpj,
-        //cnpj:data[0].propostal[1].SGSETNumber,
-            //find proposal by SGSETNumber
-        cnpj: '',
-        corporateName: [SGSETNumber],
-        size: '',
+        cnpj: "2",
+        SGSETNumber: SGSETNumber,
     }
     const { register, handleSubmit, setValue } = useForm(
         { defaultValues: inicial }
     );
+
+
 
     //const objPropostal =JSON.parse(cnpj);
 
@@ -54,7 +131,7 @@ function Edit() {
         setValue('status', selectedProposal.status);
         setValue('umbrella', selectedProposal.umbrella);
     }
-*/
+    */
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -199,6 +276,10 @@ function Edit() {
                 />Não
 
                 <button type="submit">OK</button>
+                <button type="reset">Limpar</button>
+                <button>
+                    <Link to='/consult'>Voltar</Link>
+                </button>
 
             </div>
         </form>
