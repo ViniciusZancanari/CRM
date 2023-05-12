@@ -17,7 +17,7 @@ function Login() {
                 />
 
                 <button>
-                    <Link to="/consult">Entrar</Link>
+                    <Link to="/menu">Entrar</Link>
                 </button>
             </div>
         </form>
