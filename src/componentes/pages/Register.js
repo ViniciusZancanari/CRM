@@ -24,7 +24,7 @@ function Register() {
                 <h1>Cadastrar Novo Atendimento</h1>
                 <label>CNPJ</label>
                 <input
-                    type="number"
+                    type="text"
                     {...register('cnpj')}
                     onChange={(e) => setValue('cnpj',e.target.value)}
                 />
@@ -65,14 +65,14 @@ function Register() {
 
                 <label>Telefone</label>
                 <input
-                    type='tel'
+                    type='text'
                     {...register("phone")}
                     onChange={(e) => setValue("phone",e.target.value)}
                 ></input>
 
                 <label>E-mail</label>
                 <input
-                    type='email'
+                    type='text'
                     {...register("email")}
                     onChange={(e) => setValue("email",e.target.value)}
                 ></input>
