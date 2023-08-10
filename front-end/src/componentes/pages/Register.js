@@ -1,20 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import Axios from 'axios'
 
-function Register() {
+function Teste() {
 
-    const { register, handleSubmit,setValue } = useForm();
+    const [values, setValues] = useState();
+    const { handleSubmit } = useForm();
 
-    var listProposals = []
+
+    /*useEffect (()=>
+    {
+        Axios.get("http://localhost:3001/getPropostal").then((response)=>{
+            console.log(response)
+        })
+    },[])
+    */
+
+    const handleaddValues = (value) => {
+        setValues((prevValues) => ({
+            ...prevValues,
+            [value.target.name]: value.target.value,
+        }));
+    };
+
 
     const onSubmit = (e) => {
 
-        var proposal = JSON.stringify(e);
-        console.log(proposal)
-        listProposals.push(e);
-        console.log(listProposals);
+        Axios.post("http://localhost:3001/register",
+            {
+                idCNPJ: values.idCNPJ,
+                razaoSocial: values.razaoSocial,
+                porte: values.porte,
+                cidade: values.cidade,
+                estado: values.estado,
+                pais: values.pais,
 
+                nome: values.nome,
+                telefone: values.telefone,
+                email: values.email,
+
+                numeroSGSET: values.numeroSGSET,
+                data: values.data,
+                assunto: values.assunto,
+                fomento: values.fomento,
+                responsavelComercial: values.responsavelComercial,
+                responsavelTecnico: values.responsavelTecnico,
+                area: values.area,
+                preco: values.preco,
+                status: values.status,
+                guardaChuva: values.guardaChuva
+
+
+
+            }).then((response) => {
+                console.log(response);
+            });
     }
+
+
+
 
     return (
 
@@ -25,33 +69,46 @@ function Register() {
                 <label>CNPJ</label>
                 <input
                     type="text"
-                    {...register('cnpj')}
-                    onChange={(e) => setValue('cnpj',e.target.value)}
+                    name="idCNPJ"
+                    onChange={handleaddValues}
                 />
 
                 <label>Razão Social</label>
                 <input
                     type="text"
-                    {...register('corporateName')}
-                    onChange={(e) => setValue('corporateName',e.target.value)}
+                    name="razaoSocial"
+                    onChange={handleaddValues}
                     placeholder='Gerado por API'
                 />
 
                 <label>Porte</label>
-                <placeholder>API</placeholder>
                 <input
                     type="text"
-                    {...register('size')}
-                    onChange={(e) => setValue('size',e.target.value)}
+                    name="porte"
+                    onChange={handleaddValues}
                     placeholder='Gerado por API'
                 />
 
-                <label>Localização</label>
-                <placeholder>API</placeholder>
+                <label>Cidade</label>
                 <input
                     type="text"
-                    {...register('location')}
-                    onChange={(e) => setValue('location',e.target.value)}
+                    name="cidade"
+                    onChange={handleaddValues}
+                    placeholder='Gerado por API'
+                />
+                <label>Estado</label>
+                <input
+                    type="text"
+                    name="estado"
+                    onChange={handleaddValues}
+                    placeholder='Gerado por API'
+                />
+
+                <label>Pais</label>
+                <input
+                    type="text"
+                    name="pais"
+                    onChange={handleaddValues}
                     placeholder='Gerado por API'
                 />
 
@@ -59,106 +116,100 @@ function Register() {
                 <label>Nome</label>
                 <input
                     type='text'
-                    {...register('name')}
-                    onChange={(e) => setValue('name', e.target.value)}
-                    autoFocus></input>
+                    name="nome"
+                    onChange={handleaddValues}
+                ></input>
 
                 <label>Telefone</label>
                 <input
                     type='text'
-                    {...register("phone")}
-                    onChange={(e) => setValue("phone",e.target.value)}
+                    name="telefone"
+                    onChange={handleaddValues}
                 ></input>
 
                 <label>E-mail</label>
                 <input
                     type='text'
-                    {...register("email")}
-                    onChange={(e) => setValue("email",e.target.value)}
+                    name="email"
+                    onChange={handleaddValues}
                 ></input>
-            </div>
 
-            <div>
                 <h3>Dados da Proposta</h3>
                 <label>Número da Proposta SGSET</label>
                 <input
-                    {...register("SGSETNumber")}
-                    onChange={(e) => setValue("SGSETNumber",e.target.value)}
+                    type='text'
+                    name="numeroSGSET"
+                    onChange={handleaddValues}
                     placeholder='Número da Proposta SGSET'
+                />
+
+                <label>Data</label>
+                <input
+                    type='date'
+                    name="data"
+                    onChange={handleaddValues}
+                    placeholder='Número da Proposta SGSET'
+                />
+
+
+                <label>Assunto</label>
+                <input
+                    type='text'
+                    name="assunto"
+                    onChange={handleaddValues}
+                />
+
+                <label>Fomento</label>
+                <input
+                    type='text'
+                    name="fomento"
+                    onChange={handleaddValues}
+                />
+
+                <label>Responsável Comercial</label>
+                <input
+                    type='text'
+                    name="responsavelComercial"
+                    onChange={handleaddValues}
+                    placeholder='Op'
                 />
 
                 <label>Responsável Técnico</label>
                 <input
-                    {...register("responsible")}
-                    onChange={(e) => setValue("responsible",e.target.value)}
-                    placeholder='Responsável Técnico'
+                    type='text'
+                    name="responsavelTecnico"
+                    onChange={handleaddValues}
+                    placeholder='Op'
                 />
 
                 <label>Área</label>
                 <input
-                    type='radio'
-                    value='Area1'
-                    {...register("area")}
-                    onChange={(e) => setValue("area",e.target.value)}
-                />Area1
-
-                <input
-                    type='radio'
-                    value='Area2'
-                    {...register("area")}
-                    onChange={(e) => setValue("area",e.target.value)}
-                />Area2
-
-                <input
-                    type='radio'
-                    value='Area3'
-                    {...register("area")}
-                    onChange={(e) => setValue("area",e.target.value)}
-                />Area3
-
+                    type='text'
+                    name="area"
+                    onChange={handleaddValues}
+                    placeholder='Op'
+                />
                 <label>Valor</label>
                 <input
-                    {...register("price")}
-                    onChange={(e) => setValue("price",e.target.value)}
-                    placeholder='R$' />
+                    type="text"
+                    name="preco"
+                    onChange={handleaddValues}
+                    placeholder='R$'
+                />
 
                 <label>Status</label>
                 <input
-                    type='radio'
-                    value='A'
-                    {...register("status")}
-                    onChange={(e) => setValue("status",e.target.value)}
-                />A
-
-                <input
-                    type='radio'
-                    value='B'
-                    {...register("status")}
-                    onChange={(e) => setValue("status",e.target.value)}
-                />B
-
-                <input
-                    type='radio'
-                    value='C'
-                    {...register("status")}
-                    onChange={(e) => setValue("status",e.target.value)}
-                />C
+                    type="text"
+                    name="status"
+                    onChange={handleaddValues}
+                />
 
                 <label>Parcela Guarda-Chuva:</label>
                 <input
-                    type='radio'
-                    value='sim'
-                    {...register("umbrella")}
-                    onChange={(e) => setValue("umbrella",e.target.value)}
-                />Sim
-
-                <input
-                    type='radio'
-                    value='nao'
-                    {...register("umbrella")}
-                    onChange={(e) => setValue("umbrella",e.target.value)}
-                />Não
-
+                    type="text"
+                    name="guardaChuva"
+                    onChange={handleaddValues}
+                />
                 <button type="submit">OK</button>
 
             </div>
@@ -166,4 +217,4 @@ function Register() {
     )
 }
 
-export default Register;
+export default Teste;

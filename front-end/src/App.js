@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'rea
 import Login from './componentes/pages/Login';
 import Edit from './componentes/pages/Edit';
 import Rotas from './componentes/Rotas.js';
-import Teste from './componentes/teste';
 
 function App() {
 /*
@@ -23,7 +22,7 @@ function Layout() {
 */
   return (
     <div className="App">
-      <Teste/>
+      <Register/>
       
       
     </div>
