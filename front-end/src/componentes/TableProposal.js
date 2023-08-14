@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
-function TableProposal({ proposals }) {
+function TableProposal({ props }) {
   
 
   return (
@@ -8,10 +8,11 @@ function TableProposal({ proposals }) {
       {proposals.map((proposal, index) => (
         <button >
           <tr key={index}>
-            <p>CNPJ: {proposal.cnpj}</p>
-            <p>Nº SGSET: {proposal.SGSETNumber}</p>
-            <p>Status: {proposal.status}</p>
-            <Link to={`/edit/${proposal.SGSETNumber}`}>Editar </Link>
+            <p>CNPJ: {props.idCNPJ}</p>
+            <p>Nº SGSET: {props.numeroSGSET}</p>
+            <p>Status: {props.status}</p>
+            <p>Data: {props.data}</p>
+            <Link to={`/edit/${props.numeroSGSET}`}>Editar </Link>
           </tr>
         </button>
       ))}

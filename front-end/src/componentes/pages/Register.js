@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Axios from 'axios'
+import styles from '../../index.css'
+
+
 
 function Teste() {
 
@@ -64,7 +67,7 @@ function Teste() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
 
-            <div>
+            <div className="register">
                 <h1>Cadastrar Novo Atendimento</h1>
                 <label>CNPJ</label>
                 <input
@@ -189,7 +192,7 @@ function Teste() {
                     onChange={handleaddValues}
                     placeholder='Op'
                 />
-                <label>Valor</label>
+                <label>Preço</label>
                 <input
                     type="text"
                     name="preco"
