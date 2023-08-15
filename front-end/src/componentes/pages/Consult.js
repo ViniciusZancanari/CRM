@@ -1,22 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import listProposals from '../../data.json';
 import TableProposal from "../TableProposal";
- 
+import  Axios from "axios";
+
 function Consult() {
 
-    const { register, handleSubmit, setValue } = useForm()
-    const [filteredProposals, setFilteredProposals] = useState(null);
+    const { handleSubmit, setValues } = useForm()
+    const [listedProposals, setListedProposals] = useState(null);
 
+
+    const handleaConsultValues = (value) => {
+        setValues((prevValues) => ({
+            ...prevValues,
+            [value.target.name]: value.target.value,
+        }));
+    };
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/getPropostal").then((response) => {
+            setListedProposals(response.data)
+        });
+    }, []);
 
     const onSubmit = (values) => {
 
         const { consultCNPJ, consultSGSETNumber } = values;
 
         if (consultCNPJ || consultSGSETNumber != 0) {
-            const company = listProposals.find((proposal) => proposal.cnpj === consultCNPJ || proposal.sgsetNumber === consultSGSETNumber)
-            setFilteredProposals(company.propostal)
-            console.log(company)
+
+
         }
     }
 
@@ -24,35 +36,37 @@ function Consult() {
 
     return (
         <div>
-                
+
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <label>CNPJ</label>
                 <input
                     type="text"
-                    {...register('consultCNPJ')}
-                    onChange={(e) => setValue("consultCNPJ", e.target.value)}
-                    />
+                    value='consultCNPJ'
+                    onChange={handleaConsultValues}
+                />
 
                 <label>Número da Proposta do SGSET</label>
 
                 <input
                     type="text"
-                    {...register('consultSGSETNumber')}
-                    onChange={(e) => setValue("consultSGSETNumber", e.target.value)}
-                    />
+                    value='consultSGSETNumber'
+                    onChange={handleaConsultValues}
+                />
 
                 <button
                     type='submit'
-                    >
+                >
                     Pesquisar
                 </button>
             </form>
-            {
-                filteredProposals && filteredProposals.length > 0 &&
-                <TableProposal proposals={filteredProposals} />
-            }
 
+            <div>
+                {typeof listedProposals !== "undefined" &&
+                listedProposals.map((value) =>{
+                   return <TableProposal/>
+                })}
+            </div>
         </div>
     )
 

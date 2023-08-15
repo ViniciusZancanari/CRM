@@ -63,11 +63,11 @@ app.post('/register', (req, res) => {
 
 app.get('/getPropostal', (req, res) => {
 
-    const { idCNPJ } = req.body;
-    const { numeroSGSET } = req.body;
+    //const { idCNPJ } = req.body;
+    //const { numeroSGSET } = req.body;
 
-    let SQLConsult = "SELECT ? from empresas";
-    db.query(SQLConsult,[idCNPJ,numeroSGSET ], (err, result) => {
+    let SQLConsult = "SELECT * FROM empresas";
+    db.query(SQLConsult, (err, result) => {
 
         if (err) console.log(err)
         else res.send(result)
