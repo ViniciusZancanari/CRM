@@ -6,9 +6,9 @@ import  Axios from "axios";
 function Consult() {
 
     const { handleSubmit, setValues } = useForm()
-    const [listedProposals, setListedProposals] = useState(null);
+    const [listedProposals, setListedProposals] = useState();
 
-
+    console.log(listedProposals)
     const handleaConsultValues = (value) => {
         setValues((prevValues) => ({
             ...prevValues,
@@ -26,7 +26,7 @@ function Consult() {
 
         const { consultCNPJ, consultSGSETNumber } = values;
 
-        if (consultCNPJ || consultSGSETNumber != 0) {
+        if (consultCNPJ || consultSGSETNumber !== 0) {
 
 
         }
@@ -61,15 +61,22 @@ function Consult() {
                 </button>
             </form>
 
-            <div>
-                {typeof listedProposals !== "undefined" &&
-                listedProposals.map((value) =>{
-                   return <TableProposal/>
-                })}
-            </div>
+            {typeof listedProposals !== 'undefined' &&
+            listedProposals.map((value) =>{
+
+                return <TableProposal
+                key={value.idCNPJ} 
+                listCard = {listedProposals}
+                setListCard={setListedProposals}
+                idCNPJ={value.idCNPJ}
+                razaoSocial={value.razaoSocial}
+                >
+                </TableProposal>
+            })}
+        
         </div>
     )
 
-}
+}   
 
 export default Consult;
