@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'rea
 import Login from './componentes/pages/Login';
 import Edit from './componentes/pages/Edit';
 import Rotas from './componentes/Rotas.js';
+import PersistentDrawerLeft from './componentes/PersistentDrawerLeft';
 
 function App() {
 /*
@@ -22,7 +23,10 @@ function Layout() {
 */
   return (
     <div className="App">
-      <Register/>
+
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;600;700&display=swap" rel="stylesheet"/>
+
+      <PersistentDrawerLeft/>
       
       
     </div>
@@ -30,3 +34,6 @@ function Layout() {
 }
 
 export default App;
+
+
+

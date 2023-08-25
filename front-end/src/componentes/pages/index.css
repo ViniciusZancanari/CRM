@@ -1,5 +1,7 @@
 h1{
     font-size: 20px;
+    display: flex;
+    padding-bottom: 3px;
 
 }
 
@@ -10,13 +12,21 @@ input{
     border: 1px solid #ccc;
     padding: 5px;
     margin: 5px;
+   
 }
+
+label{
+    display: flex;
+}
+
+
 
 .register{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.NovoAtendimeto{
-    margin: 25px;
-}
 
+img{
+    width: 240px;
+    height: 100px;
+}
