@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Axios from 'axios'
-import './index.css'
+import './style.css'
+import Button from '@mui/material/Button';
 
 
 function Teste() {
@@ -215,10 +216,13 @@ function Teste() {
                         onChange={handleaddValues}
                     />
                 </div>
-                <button type="submit">OK</button>
 
+                <Button variant="outlined" >Voltar</Button>
+                <Button variant="outlined   " type="reset">Limpar Campos</Button>
+                <Button variant="contained" type="submit">Cadastrar</Button>
             </div>
         </form>
+                //<button type="submit">OK</button>
     )
 }
 
