@@ -30,3 +30,21 @@ img{
     width: 240px;
     height: 100px;
 }
+
+
+
+.card--p{
+    display:flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+.CardContent{
+    display:inline-block;
+    padding: 10px;
+}
+
+
+.TablePropostalCardActions{
+    display:flex;
+    flex-direction: row-reverse;
+}

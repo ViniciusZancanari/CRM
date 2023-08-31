@@ -5,34 +5,48 @@ import  Axios from "axios";
 
 function Consult() {
 
-    const { handleSubmit, setValues } = useForm()
     const [listedProposals, setListedProposals] = useState();
-
+    const { handleSubmit, register } = useForm();
+    
     console.log(listedProposals)
+/*
     const handleaConsultValues = (value) => {
         setValues((prevValues) => ({
             ...prevValues,
             [value.target.name]: value.target.value,
         }));
     };
+    */
 
-    useEffect(() => {
-        Axios.get("http://localhost:3001/getPropostal").then((response) => {
-            setListedProposals(response.data)
-        });
-    }, []);
+    const onSubmit = ({consultCNPJ}) => {
 
-    const onSubmit = (values) => {
+        try{
 
-        const { consultCNPJ, consultSGSETNumber } = values;
-
-        if (consultCNPJ || consultSGSETNumber !== 0) {
-
-
+            let url = `http://localhost:3001/getPropostal?empresa_id=${consultCNPJ}`
+            Axios.get(url)
+            .then((response) => {
+                console.log(url)
+                console.log(consultCNPJ)
+                    setListedProposals(response.data)
+                });
         }
+        catch(err){
+            console.log("err")
+        }
+
+
+        
     }
 
+/*
+    <label>Número da Proposta do SGSET</label>
 
+    <input
+        type="text"
+        name='consultSGSETNumber'
+        onChange={handleaConsultValues}
+    />
+    */
 
     return (
         <div>
@@ -42,16 +56,7 @@ function Consult() {
                 <label>CNPJ</label>
                 <input
                     type="text"
-                    value='consultCNPJ'
-                    onChange={handleaConsultValues}
-                />
-
-                <label>Número da Proposta do SGSET</label>
-
-                <input
-                    type="text"
-                    value='consultSGSETNumber'
-                    onChange={handleaConsultValues}
+                    {...register("consultCNPJ")}
                 />
 
                 <button
@@ -65,12 +70,15 @@ function Consult() {
             listedProposals.map((value) =>{
 
                 return <TableProposal
-                key={value.idCNPJ} 
+                key={value.empresa_id} 
                 listCard = {listedProposals}
                 setListCard={setListedProposals}
-                idCNPJ={value.idCNPJ}
-                razaoSocial={value.razaoSocial}
-                >
+                empresa_id={value.empresa_id}
+                numeroSGSET = {value.numeroSGSET}
+                assunto={value.assunto}
+                fomento = {value.fomento}
+                preco = {value.preco}
+                status = {value.status} >
                 </TableProposal>
             })}
         
